@@ -1,0 +1,177 @@
+[root@ip-172-31-15-36 ec2-user]# ping guvi.in
+PING guvi.in (172.67.144.22) 56(84) bytes of data.
+64 bytes from 172.67.144.22 (172.67.144.22): icmp_seq=1 ttl=43 time=2.42 ms
+64 bytes from 172.67.144.22 (172.67.144.22): icmp_seq=2 ttl=43 time=2.56 ms
+64 bytes from 172.67.144.22 (172.67.144.22): icmp_seq=3 ttl=43 time=3.04 ms
+64 bytes from 172.67.144.22 (172.67.144.22): icmp_seq=4 ttl=43 time=2.52 ms
+^Z
+[5]+  Stopped                 ping guvi.in
+[root@ip-172-31-15-36 ec2-user]#top
+top - 14:10:11 up 22 min,  1 user,  load average: 0.00, 0.00, 0.00
+Tasks: 102 total,   1 running,  54 sleeping,   5 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :   988916 total,   352080 free,    80928 used,   555908 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.   768796 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                                                                            
+ 3802 root      20   0  168936   4384   3748 R  0.3  0.4   0:00.01 top                                                                                
+    1 root      20   0  123488   5448   3904 S  0.0  0.6   0:02.18 systemd                                                                            
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd                                                                           
+    3 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_gp                                                                             
+    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_par_gp                                                                         
+    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0H-ev                                                                    
+    7 root      20   0       0      0      0 I  0.0  0.0   0:00.03 kworker/u30:0-e                                                                    
+    8 root       0 -20       0      0      0 I  0.0  0.0   0:00.05 kworker/0:1H-ev                                                                    
+    9 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 mm_percpu_wq                                                                       
+   10 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_tasks_rude_                                                                    
+   11 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_tasks_trace                                                                    
+   12 root      20   0       0      0      0 S  0.0  0.0   0:00.02 ksoftirqd/0                                                                        
+   13 root      20   0       0      0      0 I  0.0  0.0   0:00.09 rcu_sched                                                                          
+   14 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0                                                                        
+   16 root      20   0       0      0      0 S  0.0  0.0   0:00.00 cpuhp/0                                                                            
+   18 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs
+[root@ip-172-31-15-36 ec2-user]# mpstat
+Linux 5.10.147-133.644.amzn2.x86_64 (ip-172-31-15-36.ap-northeast-1.compute.internal)   12/06/2022      _x86_64_        (1 CPU)
+
+02:11:08 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+02:11:08 PM  all    1.39    0.00    0.30    0.09    0.00    0.01    0.57    0.00    0.00   97.64
+[root@ip-172-31-15-36 ec2-user]# traceroute www.guvi.in
+traceroute to www.guvi.in (172.67.144.22), 30 hops max, 60 byte packets
+ 1  ec2-54-150-128-41.ap-northeast-1.compute.amazonaws.com (54.150.128.41)  64.960 ms ec2-54-150-128-69.ap-northeast-1.compute.amazonaws.com (54.150.128.69)  102.266 ms ec2-54-150-128-35.ap-northeast-1.compute.amazonaws.com (54.150.128.35)  56.069 ms
+ 2  100.65.26.144 (100.65.26.144)  7.485 ms 100.65.24.144 (100.65.24.144)  1.579 ms 100.65.27.96 (100.65.27.96)  4.177 ms
+ 3  100.66.12.66 (100.66.12.66)  3.121 ms 100.66.12.206 (100.66.12.206)  3.245 ms 100.66.12.194 (100.66.12.194)  3.606 ms
+ 4  100.66.15.162 (100.66.15.162)  13.841 ms 100.66.14.238 (100.66.14.238)  20.728 ms 100.66.15.166 (100.66.15.166)  19.220 ms
+ 5  241.0.7.196 (241.0.7.196)  0.315 ms 241.0.7.203 (241.0.7.203)  0.299 ms 241.0.7.194 (241.0.7.194)  0.284 ms
+ 6  240.0.252.24 (240.0.252.24)  0.420 ms 240.0.252.25 (240.0.252.25)  0.297 ms  0.318 ms
+ 7  242.2.243.33 (242.2.243.33)  3.950 ms 242.2.242.177 (242.2.242.177)  0.786 ms 242.2.243.145 (242.2.243.145)  0.422 ms
+ 8  15.230.129.207 (15.230.129.207)  3.382 ms 15.230.154.112 (15.230.154.112)  0.695 ms 15.230.154.108 (15.230.154.108)  0.704 ms
+ 9  15.230.129.208 (15.230.129.208)  3.310 ms 15.230.129.198 (15.230.129.198)  4.563 ms 15.230.129.214 (15.230.129.214)  6.333 ms
+10  15.230.161.50 (15.230.161.50)  2.559 ms 52.95.31.30 (52.95.31.30)  5.236 ms 52.95.31.48 (52.95.31.48)  0.624 ms
+11  100.91.149.148 (100.91.149.148)  3.296 ms 100.91.137.208 (100.91.137.208)  3.803 ms 100.91.149.130 (100.91.149.130)  2.730 ms
+12  150.222.242.32 (150.222.242.32)  2.935 ms 150.222.241.252 (150.222.241.252)  4.089 ms 150.222.241.97 (150.222.241.97)  2.047 ms
+13  100.91.135.115 (100.91.135.115)  4.391 ms 100.91.147.17 (100.91.147.17)  2.582 ms 100.91.135.37 (100.91.135.37)  1.630 ms
+14  240.0.188.13 (240.0.188.13)  2.280 ms 240.0.188.14 (240.0.188.14)  3.042 ms 52.95.30.69 (52.95.30.69)  2.049 ms
+15  52.93.251.240 (52.93.251.240)  2.782 ms 242.4.213.129 (242.4.213.129)  3.012 ms 100.91.135.209 (100.91.135.209)  1.575 ms
+16  99.83.91.91 (99.83.91.91)  3.316 ms 150.222.77.142 (150.222.77.142)  11.412 ms 150.222.77.144 (150.222.77.144)  10.861 ms
+17  172.70.120.2 (172.70.120.2)  4.276 ms 172.70.220.2 (172.70.220.2)  1.824 ms  1.578 ms
+18  172.67.144.22 (172.67.144.22)  2.471 ms 172.70.120.4 (172.70.120.4)  3.361 ms 172.68.116.4 (172.68.116.4)  3.419 ms
+[root@ip-172-31-15-36 ec2-user]# netstat www.guvi.com 9000
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0    236 ip-172-31-15-36.ap-:ssh ec2-3-112-23-5.ap:47724 ESTABLISHED
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         DGRAM                    11536    /run/systemd/notify
+unix  2      [ ]         DGRAM                    11537    /run/systemd/cgroups-agent
+unix  5      [ ]         DGRAM                    11545    /run/systemd/journal/socket
+unix  2      [ ]         DGRAM                    16416    /run/chrony/chronyd.sock
+unix  18     [ ]         DGRAM                    11546    /dev/log
+unix  2      [ ]         DGRAM                    12908    /run/systemd/shutdownd
+unix  2      [ ]         DGRAM                    16825    
+unix  2      [ ]         DGRAM                    16007    
+unix  3      [ ]         STREAM     CONNECTED     17902    
+unix  3      [ ]         STREAM     CONNECTED     16284    /run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    13688    
+unix  3      [ ]         STREAM     CONNECTED     16168    
+unix  3      [ ]         STREAM     CONNECTED     16285    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     13251    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     13680    
+unix  3      [ ]         STREAM     CONNECTED     17898    
+unix  3      [ ]         STREAM     CONNECTED     13250    
+unix  3      [ ]         STREAM     CONNECTED     17901    
+unix  3      [ ]         STREAM     CONNECTED     13708    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     16057    
+unix  2      [ ]         DGRAM                    17859    
+unix  2      [ ]         DGRAM                    16400    
+unix  3      [ ]         DGRAM                    13722    
+unix  2      [ ]         DGRAM                    13189    
+unix  3      [ ]         STREAM     CONNECTED     17899    
+unix  3      [ ]         DGRAM                    13723    
+unix  2      [ ]         DGRAM                    17023    
+unix  2      [ ]         DGRAM                    14660    
+unix  3      [ ]         STREAM     CONNECTED     15851    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     17930    
+unix  3      [ ]         STREAM     CONNECTED     17924    
+unix  3      [ ]         STREAM     CONNECTED     17939    
+unix  3      [ ]         STREAM     CONNECTED     17936    
+unix  3      [ ]         STREAM     CONNECTED     19789    
+unix  3      [ ]         STREAM     CONNECTED     17943    
+unix  3      [ ]         STREAM     CONNECTED     18536    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     16393    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     16235    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     17955    
+unix  3      [ ]         STREAM     CONNECTED     16283    
+unix  3      [ ]         STREAM     CONNECTED     17945    
+unix  2      [ ]         DGRAM                    19081    
+unix  2      [ ]         DGRAM                    21509    
+unix  3      [ ]         STREAM     CONNECTED     15849    /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    20619    
+unix  3      [ ]         STREAM     CONNECTED     17934    
+unix  3      [ ]         STREAM     CONNECTED     17961    
+unix  3      [ ]         STREAM     CONNECTED     18535    
+unix  3      [ ]         STREAM     CONNECTED     16282    
+unix  3      [ ]         STREAM     CONNECTED     15846    
+unix  3      [ ]         STREAM     CONNECTED     17958    
+unix  2      [ ]         DGRAM                    18021    
+unix  3      [ ]         STREAM     CONNECTED     17908    
+unix  3      [ ]         STREAM     CONNECTED     17940    
+unix  3      [ ]         STREAM     CONNECTED     19728    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     16251    
+unix  3      [ ]         STREAM     CONNECTED     17942    
+unix  3      [ ]         STREAM     CONNECTED     21407    
+unix  3      [ ]         STREAM     CONNECTED     17921    
+unix  3      [ ]         STREAM     CONNECTED     17948    
+unix  2      [ ]         DGRAM                    22353    
+unix  3      [ ]         STREAM     CONNECTED     17915    
+unix  3      [ ]         STREAM     CONNECTED     15850    
+unix  3      [ ]         STREAM     CONNECTED     19790    /var/lib/amazon/ssm/ipc/termination
+unix  3      [ ]         STREAM     CONNECTED     16252    
+unix  2      [ ]         DGRAM                    21547    
+unix  2      [ ]         DGRAM                    17999    
+unix  2      [ ]         DGRAM                    16237    
+unix  3      [ ]         STREAM     CONNECTED     19792    
+unix  3      [ ]         STREAM     CONNECTED     17916    
+unix  2      [ ]         DGRAM                    12916    
+unix  3      [ ]         STREAM     CONNECTED     17964    
+unix  3      [ ]         STREAM     CONNECTED     19073    
+unix  3      [ ]         STREAM     CONNECTED     17969    
+unix  2      [ ]         DGRAM                    21401    
+unix  3      [ ]         STREAM     CONNECTED     17922    
+unix  3      [ ]         STREAM     CONNECTED     15847    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     17952    
+unix  3      [ ]         STREAM     CONNECTED     19074    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     16234    
+unix  3      [ ]         STREAM     CONNECTED     15848    
+unix  3      [ ]         STREAM     CONNECTED     17912    
+unix  3      [ ]         STREAM     CONNECTED     16392    
+unix  3      [ ]         STREAM     CONNECTED     17937    
+unix  3      [ ]         STREAM     CONNECTED     17973    
+unix  3      [ ]         STREAM     CONNECTED     17931    
+unix  3      [ ]         STREAM     CONNECTED     17960    
+unix  2      [ ]         DGRAM                    18935    
+unix  3      [ ]         STREAM     CONNECTED     17976    
+unix  3      [ ]         STREAM     CONNECTED     17928    
+unix  3      [ ]         STREAM     CONNECTED     17927    
+unix  3      [ ]         STREAM     CONNECTED     17957    
+unix  3      [ ]         STREAM     CONNECTED     19727    
+unix  3      [ ]         STREAM     CONNECTED     17972    
+unix  3      [ ]         STREAM     CONNECTED     14669    
+unix  3      [ ]         STREAM     CONNECTED     17954    
+unix  3      [ ]         STREAM     CONNECTED     17911    
+unix  3      [ ]         STREAM     CONNECTED     15855    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     17951    
+unix  3      [ ]         STREAM     CONNECTED     17970    
+unix  3      [ ]         STREAM     CONNECTED     15854    
+unix  3      [ ]         STREAM     CONNECTED     17967    
+unix  3      [ ]         STREAM     CONNECTED     17909    
+unix  3      [ ]         STREAM     CONNECTED     17963    
+unix  3      [ ]         STREAM     CONNECTED     19793    /var/lib/amazon/ssm/ipc/health
+unix  3      [ ]         STREAM     CONNECTED     17933    
+unix  2      [ ]         DGRAM                    16287    
+unix  3      [ ]         STREAM     CONNECTED     17966    
+unix  3      [ ]         STREAM     CONNECTED     21408    
+unix  3      [ ]         STREAM     CONNECTED     17925    
+unix  3      [ ]         STREAM     CONNECTED     14670    
+unix  3      [ ]         STREAM     CONNECTED     17946    
+unix  3      [ ]         STREAM     CONNECTED     17975    
+unix  3      [ ]         STREAM     CONNECTED     17949    
